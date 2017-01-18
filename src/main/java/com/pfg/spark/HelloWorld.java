@@ -6,12 +6,24 @@
 package com.pfg.spark;
 
 import com.google.gson.Gson;
+import database.DataBean;
+import database.DataDAO;
+import database.Database;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import static spark.Spark.*;
 
 public class HelloWorld {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
        
         Gson gson = new Gson();
         get("/hello/:msg/:name", (request, response) -> new MyMessage(request.params(":msg"),request.params(":name")), gson::toJson);
+        
+        DataDAO d=new DataDAO(); 
+        Database.getInstance().SqliteConnect();  
+        get("/db", (request, response) -> new DataBean(), gson::toJson);
+        Database.getInstance().SqliteDisconnect();
+
     }
 }
