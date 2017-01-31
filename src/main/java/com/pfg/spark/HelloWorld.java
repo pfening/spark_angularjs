@@ -6,12 +6,8 @@
 package com.pfg.spark;
 
 import com.google.gson.Gson;
-import database.DataBean;
 import database.DataDAO;
 import database.Database;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import static spark.Spark.*;
 
 public class HelloWorld {
@@ -22,7 +18,7 @@ public class HelloWorld {
         
         DataDAO d=new DataDAO(); 
         Database.getInstance().SqliteConnect();  
-        get("/db", (request, response) -> new DataBean(), gson::toJson);
+        get("/db", (request, response) -> new DataDAO().readAll(), gson::toJson);
         Database.getInstance().SqliteDisconnect();
 
     }

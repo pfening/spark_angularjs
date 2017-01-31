@@ -11,8 +11,8 @@ public class Database {
 	private static final Database instance = new Database();
 
         private static Connection sqliteconn;	
-        private final String sqliteurl = "jdbc:sqlite:C:\\NetBeansProjects\\spark_angularjs\\spark.db";
-        
+        //private final String sqliteurl = "jdbc:sqlite:C:\\NetBeansProjects\\spark_angularjs\\spark.db";
+        private final String sqliteurl = "jdbc:sqlite:C:\\Users\\Gabor\\Documents\\NetBeansProjects\\Spark\\spark.db";
 
 	public static Database getInstance() {
 		return instance;
@@ -25,13 +25,13 @@ public class Database {
 	public void SqliteConnect() throws Exception {
 		Class.forName("org.sqlite.JDBC");
                 sqliteconn = DriverManager.getConnection(sqliteurl);
-                //System.out.println("S connected");
+                System.out.println("S connected");
 	}
 	
 	public void SqliteDisconnect() throws SQLException {
 		sqliteconn.close();		
 		sqliteconn = null;
-                //System.out.println("S disconnected");
+                System.out.println("S disconnected");
 	}
 	
 }
