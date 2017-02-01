@@ -51,11 +51,11 @@ public class DataDAO {
             return todolist;   
     }
  
-    public DataBean readOne() throws SQLException, Exception{
+    public DataBean readOne(String ida) throws SQLException, Exception{
         DataBean entry = null;
         Connection conn = Database.getInstance().getSqliteConnection();		
-            PreparedStatement p = conn.prepareStatement("select * from todo where task=?");
-            p.setString(1, selectedItem);		
+            PreparedStatement p = conn.prepareStatement("select * from todo where id=?");
+            p.setString(1, ida);		
             ResultSet result = p.executeQuery();		
             while(result.next()) { 
             int id = result.getInt("id");
@@ -92,5 +92,6 @@ public class DataDAO {
         p.executeUpdate();		
         p.close();		
     }
+
 
 }
