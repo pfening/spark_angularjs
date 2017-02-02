@@ -1,7 +1,7 @@
 package database;
 
 public class DataBean {
-    private int id;
+    private String id;
     private String task;
     private String startdate;  
     private String duedate;
@@ -12,8 +12,8 @@ public class DataBean {
     public DataBean(){
     
     }
-
-    public DataBean(int id,String task,String startdate,String duedate,String urgency,String finished) {
+    
+    public DataBean(String id,String task,String startdate,String duedate,String urgency,String finished) {
         this.id = id;
         this.task = task;
         this.startdate = startdate;
@@ -22,11 +22,11 @@ public class DataBean {
         this.finished = finished;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

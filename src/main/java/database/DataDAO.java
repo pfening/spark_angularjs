@@ -38,7 +38,7 @@ public class DataDAO {
         ResultSet result = p.executeQuery();		
             while(result.next()) {
                 DataBean entry = new DataBean();
-                entry.setId(result.getInt("id"));
+                entry.setId(result.getString("id"));
                 entry.setTask(result.getString("task"));
                 entry.setStartdate(result.getString("startdate"));
                 entry.setDuedate(result.getString("duedate"));
@@ -51,24 +51,26 @@ public class DataDAO {
             return todolist;   
     }
  
-    public DataBean readOne(String ida) throws SQLException, Exception{
-        DataBean entry = null;
-        Connection conn = Database.getInstance().getSqliteConnection();		
+        public static DataBean readOne(String ida) throws SQLException, Exception{
+           DataBean entry = null;
+           Connection conn = Database.getInstance().getSqliteConnection();		
             PreparedStatement p = conn.prepareStatement("select * from todo where id=?");
             p.setString(1, ida);		
             ResultSet result = p.executeQuery();		
-            while(result.next()) { 
-            int id = result.getInt("id");
-            String task = result.getString("task");
-            String startdate = result.getString("startdate");
-            String duedate = result.getString("duedate");
-            String urgency = result.getString("urgency");
-            String finished = result.getString("finished");
-            entry = new DataBean(id,task,startdate,duedate,urgency,finished);
+            while(result.next()) {
+                entry = new DataBean(
+                result.getString("id"),
+                result.getString("task"),
+                result.getString("startdate"),
+                result.getString("duedate"),
+                result.getString("urgency"),
+                result.getString("finished")
+                );
             }		
             result.close();
             p.close();                
-            return entry;             
+        
+            return entry;          
         }
     
     

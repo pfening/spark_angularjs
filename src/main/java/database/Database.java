@@ -11,8 +11,8 @@ public class Database {
 	private static final Database instance = new Database();
 
         private static Connection sqliteconn;	
-        //private final String sqliteurl = "jdbc:sqlite:C:\\NetBeansProjects\\spark_angularjs\\spark.db";
-        private final String sqliteurl = "jdbc:sqlite:C:\\Users\\Gabor\\Documents\\NetBeansProjects\\Spark\\spark.db";
+        private final String sqliteurl = "jdbc:sqlite:C:\\Spark\\spark.db";
+        //private final String sqliteurl = "jdbc:sqlite:C:\\Users\\Gabor\\Documents\\NetBeansProjects\\Spark\\spark.db";
 
 	public static Database getInstance() {
 		return instance;

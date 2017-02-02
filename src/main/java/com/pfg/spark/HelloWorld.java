@@ -14,15 +14,25 @@ public class HelloWorld {
       
         Gson gson = new Gson();
         get("/hello/:msg/:name", (req, res) -> new MyMessage(req.params(":msg"),req.params(":name")), gson::toJson);
-       
+        get("/hi", (request, response) -> "Hello World", gson::toJson);
         DataDAO d=new DataDAO();
+        
         Database.getInstance().SqliteConnect(); 
+        
         List<DataBean> all = d.readAll();
         get("/all", (req, res) -> all, gson::toJson);
        
  
-        get("/read/:id", (Request req, Response res) ->{String id = req.params(":id"); String one = gson.toJson(d.readOne(id));System.err.println(id+" / "+one); return one;}, gson::toJson);
-
+        //get("/read/:id", (req, res) ->{String id = req.params(":id");  return id;}, gson::toJson);
+        
+        get("/read/:id", (req, res) -> d.readOne("1"), gson::toJson);
+        
+        get("/users/:id", (req, res) -> {
+			String id = req.params(":id");
+                        DataBean one = d.readOne(id);
+			return one;			
+                    }, gson::toJson);
+        
         Database.getInstance().SqliteDisconnect();
        
         /*
