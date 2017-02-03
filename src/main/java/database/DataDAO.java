@@ -51,7 +51,7 @@ public class DataDAO {
             return todolist;   
     }
  
-        public static DataBean readOne(String ida) throws SQLException, Exception{
+        public DataBean readOne(String ida) throws SQLException, Exception{
            DataBean entry = null;
            Connection conn = Database.getInstance().getSqliteConnection();		
             PreparedStatement p = conn.prepareStatement("select * from todo where id=?");
